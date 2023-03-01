@@ -1,4 +1,4 @@
-import { randomUUID } from 'node:crypto'
+import { randomUUID } from 'crypto'
 
 export interface RecadosCreateModelDTO {
   description: string
