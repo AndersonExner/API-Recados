@@ -2,7 +2,7 @@ import fs from 'fs'
 import { User } from '../models/user'
 
 // eslint-disable-next-line n/no-path-concat
-const local = `${__dirname}\\db.json`
+const local = 'db.json'
 
 export function buscarUsuariosDB (): User[] {
   const conteudo = fs.readFileSync(local)
