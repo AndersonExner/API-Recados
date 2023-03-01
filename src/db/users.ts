@@ -1,4 +1,4 @@
-import fs from 'node:fs'
+import fs from 'fs'
 import { User } from '../models/user'
 
 // eslint-disable-next-line n/no-path-concat
