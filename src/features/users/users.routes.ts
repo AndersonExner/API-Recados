@@ -13,7 +13,7 @@ export const userRoutes = (router: Router) => {
     userValidator,
     userController.buscarUser)
 
-  router.get('/user',
+  router.get('/users',
     userController.listarUsers
   )
 
