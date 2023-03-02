@@ -2,14 +2,14 @@ import { randomUUID } from 'crypto'
 import { type Recado } from './recados'
 
 export interface UserCreatModelDTO {
-  nome: string
+  name: string
   email: string
   password: string
 }
 
 export interface UserDataBaseDTO {
   id: string
-  nome: string
+  name: string
   email: string
   password: string
   recados: Recado[]
@@ -25,7 +25,7 @@ export class User {
   constructor (params: UserCreatModelDTO) {
     this._id = randomUUID()
     this._password = params.password
-    this._nome = params.nome
+    this._nome = params.name
     this._email = params.email
     this._recados = []
   }
@@ -34,7 +34,7 @@ export class User {
     return this._id
   }
 
-  public get nome () {
+  public get name () {
     return this._nome
   }
 
@@ -53,7 +53,7 @@ export class User {
   handleProperties () {
     return {
       id: this.id,
-      nome: this.nome,
+      name: this.name,
       email: this._email,
       recados: this.recados
     }
@@ -61,7 +61,7 @@ export class User {
 
   static criarUsuarioBD (params: UserDataBaseDTO) {
     const usuario = new User({
-      nome: params.nome,
+      name: params.name,
       email: params.email,
       password: params.password
     })

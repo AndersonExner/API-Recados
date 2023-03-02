@@ -6,11 +6,11 @@ import { type ResponseAPI } from '../../responseAPI'
 export class UserController {
   cadastrarUser (request: Request, response: Response) {
     try {
-      const { nome, email, password } = request.body
+      const { name, email, password } = request.body
 
       const listaUsers = buscarUsuariosDB()
 
-      const user = new User({ nome, email, password })
+      const user = new User({ name, email, password })
 
       listaUsers.push(user)
 
