@@ -4,27 +4,27 @@ import { type Recado } from './recados'
 export interface UserCreatModelDTO {
   nome: string
   email: string
-  senha: string
+  password: string
 }
 
 export interface UserDataBaseDTO {
   id: string
   nome: string
   email: string
-  senha: string
+  password: string
   recados: Recado[]
 }
 
 export class User {
   private _id: string
-  private _senha: string
+  private _password: string
   private _nome: string
   private _email: string
   private _recados: Recado[]
 
   constructor (params: UserCreatModelDTO) {
     this._id = randomUUID()
-    this._senha = params.senha
+    this._password = params.password
     this._nome = params.nome
     this._email = params.email
     this._recados = []
@@ -32,10 +32,6 @@ export class User {
 
   public get id () {
     return this._id
-  }
-
-  public get password () {
-    return this._senha
   }
 
   public get nome () {
@@ -50,8 +46,8 @@ export class User {
     return this._recados
   }
 
-  public get senha () {
-    return this._senha
+  public get password () {
+    return this._password
   }
 
   handleProperties () {
@@ -67,7 +63,7 @@ export class User {
     const usuario = new User({
       nome: params.nome,
       email: params.email,
-      senha: params.senha
+      password: params.password
     })
     usuario._id = params.id
     usuario._recados = params.recados
