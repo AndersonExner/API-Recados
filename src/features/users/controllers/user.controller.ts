@@ -40,7 +40,7 @@ export class UserController {
 
       const resposta: ResponseAPI = {
         success: true,
-        message: 'buscados com sucesso',
+        message: 'buscadoss com sucesso',
         data: listaUsers.map((user) => user.handleProperties())
       }
 
