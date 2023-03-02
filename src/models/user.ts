@@ -55,7 +55,8 @@ export class User {
       id: this.id,
       name: this.name,
       email: this._email,
-      recados: this.recados
+      senha: this._password,
+      recados: this.recados.map((e) => e.handleProperties())
     }
   }
 
