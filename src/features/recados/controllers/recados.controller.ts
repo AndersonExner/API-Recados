@@ -40,7 +40,7 @@ export class RecadosController {
 
       const indexUser = listaUsers.findIndex((user) => user.id === userID)
 
-      const novoRecado = new Recado({ detail, description }).handleProperties() as Recado
+      const novoRecado = new Recado({ detail, description })
 
       listaUsers[indexUser].recados.push(novoRecado)
 
