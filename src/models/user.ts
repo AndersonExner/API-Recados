@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto'
-import { type Recado } from './recados'
+import { Recado } from './recados'
 
 export interface UserCreatModelDTO {
   name: string
@@ -12,7 +12,7 @@ export interface UserDataBaseDTO {
   name: string
   email: string
   password: string
-  recados: Recado[]
+  recados: Array<Recado>
 }
 
 export class User {
@@ -20,7 +20,7 @@ export class User {
   private _password: string
   private _nome: string
   private _email: string
-  private _recados: Recado[]
+  private _recados: Array<Recado>
 
   constructor (params: UserCreatModelDTO) {
     this._id = randomUUID()
@@ -56,8 +56,12 @@ export class User {
       name: this.name,
       email: this._email,
       password: this._password,
-      recados: this.recados.map((e) => e.handleProperties())
+      recados: this._recados.map((recado) => recado.handleProperties())
     }
+  }
+
+  excluirRecado (index: number) {
+    this._recados.splice(index, 1)
   }
 
   static criarUsuarioBD (params: UserDataBaseDTO) {
@@ -67,7 +71,7 @@ export class User {
       password: params.password
     })
     usuario._id = params.id
-    usuario._recados = params.recados
+    usuario._recados = params.recados.map((recado) => Recado.criarRecadoBD(recado))
 
     return usuario
   }

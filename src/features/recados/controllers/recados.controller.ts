@@ -15,8 +15,8 @@ export class RecadosController {
 
       const resposta: ResponseAPI = {
         success: true,
-        message: 'Recados de buscados',
-        data: user.recados.map((recado) => recado)
+        message: 'Recados buscados',
+        data: user.recados.map((e) => e.handleProperties())
       }
 
       return response.status(200).json(resposta)
@@ -48,8 +48,8 @@ export class RecadosController {
 
       const resposta: ResponseAPI = {
         success: true,
-        message: 'Recados de buscados',
-        data: novoRecado
+        message: 'Recados cadastrado com sucesso',
+        data: novoRecado.handleProperties()
       }
 
       return response.status(200).json(resposta)
@@ -79,10 +79,12 @@ export class RecadosController {
 
       salvarUsuariosBD(listaUsers)
 
+      const recadoAtualizado = listaUsers[indexUser].recados[indexRecado]
+
       const resposta: ResponseAPI = {
         success: true,
         message: 'Atualizado com sucesso',
-        data: listaUsers[indexUser].recados[indexRecado].handleProperties()
+        data: { id: recadoAtualizado.id, changes: { description, detail, check } }
       }
 
       return response.status(200).json(resposta)
@@ -107,14 +109,16 @@ export class RecadosController {
 
       const indexRecado = listaUsers[indexUser].recados.findIndex((recado) => recado.id === recadoID)
 
-      listaUsers[indexUser].recados.splice(1, indexRecado)
+      const recadoDelete = listaUsers[indexUser].recados[indexRecado]
+
+      listaUsers[indexUser].excluirRecado(indexRecado)
 
       salvarUsuariosBD(listaUsers)
 
       const resposta: ResponseAPI = {
         success: true,
         message: 'Excluido com sucesso',
-        data: listaUsers[indexUser].recados
+        data: recadoDelete.id
       }
 
       return response.status(200).json(resposta)

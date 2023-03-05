@@ -3,6 +3,7 @@ import { userValidator } from '../users/middlewares'
 import { RecadosController } from './controllers/recados.controller'
 import { newRecadoValidator, recadoIDValidator } from './middlewares'
 
+
 export const recadosRouter = (router: Router) => {
   const recadosController = new RecadosController()
 

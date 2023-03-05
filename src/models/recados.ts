@@ -50,8 +50,8 @@ export class Recado {
   handleProperties () {
     return {
       id: this._id,
-      detail: this._detail,
       description: this._description,
+      detail: this._detail,
       check: this._check
     }
   }
@@ -60,6 +60,8 @@ export class Recado {
     if (params.detail) this._detail = params.detail
 
     if (params.description) this._description = params.description
+
+    if (params.check) this._check = params.check
   }
 
   static criarRecadoBD (params: RecadoDataBaseDTO): Recado {

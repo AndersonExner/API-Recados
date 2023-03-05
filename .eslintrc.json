@@ -17,6 +17,7 @@
         "@typescript-eslint/prefer-nullish-coalescing": "off",
         "@typescript-eslint/prefer-readonly": "off",
         "@typescript-eslint/no-unused-expressions": "off",
-        "@typescript-eslint/array-type": "warn"
+        "@typescript-eslint/array-type": "warn",
+        "@typescript-eslint/array-type": "off"
     }
 }
