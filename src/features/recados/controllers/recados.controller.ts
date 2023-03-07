@@ -33,8 +33,7 @@ export class RecadosController {
 
   buscarRecadoporChave (request: Request, response: Response) {
     try {
-      const { userID } = request.params
-      const { key } = request.body
+      const { userID, key } = request.params
 
       const listaUsers = buscarUsuariosDB()
 
