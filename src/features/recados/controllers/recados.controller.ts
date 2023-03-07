@@ -31,6 +31,34 @@ export class RecadosController {
     }
   }
 
+  buscarRecadoporChave (request: Request, response: Response) {
+    try {
+      const { userID, key } = request.params
+
+      const listaUsers = buscarUsuariosDB()
+
+      const indexUser = listaUsers.findIndex((user) => user.id === userID)
+
+      const recados = listaUsers[indexUser].recados.filter((e) => e.description.toLocaleLowerCase().includes(key.toLocaleLowerCase()) || e.detail.toLocaleLowerCase().includes(key.toLocaleLowerCase()))
+
+      const resposta: ResponseAPI = {
+        success: true,
+        message: 'Buscado com sucesso',
+        data: recados
+      }
+
+      return response.status(200).json(resposta)
+    } catch (error: any) {
+      const resposta: ResponseAPI = {
+        success: false,
+        message: error.message,
+        data: null
+      }
+
+      return response.status(400).json(resposta)
+    }
+  }
+
   cadastrarRecado (request: Request, response: Response) {
     try {
       const { detail, description } = request.body
