@@ -44,7 +44,7 @@ export class RecadosController {
       const resposta: ResponseAPI = {
         success: true,
         message: 'Buscado com sucesso',
-        data: recados
+        data: recados.map((e) => e.handleProperties())
       }
 
       return response.status(200).json(resposta)
