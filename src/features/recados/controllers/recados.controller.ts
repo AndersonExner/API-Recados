@@ -33,13 +33,23 @@ export class RecadosController {
 
   buscarRecadoporChave (request: Request, response: Response) {
     try {
-      const { userID, key } = request.params
+      const { userID } = request.params
+      const { key } = request.body
 
       const listaUsers = buscarUsuariosDB()
 
       const indexUser = listaUsers.findIndex((user) => user.id === userID)
 
-      const recados = listaUsers[indexUser].recados.filter((e) => e.description.toLocaleLowerCase().includes(key.toLocaleLowerCase()) || e.detail.toLocaleLowerCase().includes(key.toLocaleLowerCase()))
+      const recados = listaUsers[indexUser].recados.filter((e) => {
+        if (e.description.toLocaleLowerCase().includes(key.toLocaleLowerCase())) {
+          return e
+        }
+
+        if (e.detail.toLocaleLowerCase().includes(key.toLocaleLowerCase())) {
+          return e
+        }
+        return false
+      })
 
       const resposta: ResponseAPI = {
         success: true,

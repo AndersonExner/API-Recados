@@ -17,7 +17,7 @@ export const recadosRouter = (router: Router) => {
     recadosController.cadastrarRecado
   )
 
-  router.post('/user/:userID/buscaporchave/:key',
+  router.get('/user/:userID/buscaporchave',
     userValidator,
     recadosController.buscarRecadoporChave
   )
