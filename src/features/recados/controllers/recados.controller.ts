@@ -1,7 +1,6 @@
 import { type Request, type Response } from 'express'
 import { buscarUsuariosDB, salvarUsuariosBD } from '../../../db/users'
 import { Recado } from '../../../models/recados'
-import { type User } from '../../../models/user'
 import { type ResponseAPI } from '../../responseAPI'
 
 export class RecadosController {
@@ -77,20 +76,14 @@ export class RecadosController {
 
   buscarRecadosArquivados (request: Request, response: Response) {
     try {
-      const { userID, key } = request.params
-
-      let filtro = false
-
-      if (key === 'true') {
-        filtro = true
-      }
+      const { userID } = request.params
 
       const listaUsers = buscarUsuariosDB()
 
       const indexUser = listaUsers.findIndex((user) => user.id === userID)
 
       const recados = listaUsers[indexUser].recados.filter((e) => {
-        if (e.check === filtro) {
+        if (e.check) {
           return e
         }
         return false
@@ -98,7 +91,7 @@ export class RecadosController {
 
       const resposta: ResponseAPI = {
         success: true,
-        message: 'Recados Arquivados Buscados Com Sucesso',
+        message: 'Recados Arquivados Buscados',
         data: recados.map((e) => e.handleProperties())
       }
 

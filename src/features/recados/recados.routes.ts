@@ -11,6 +11,11 @@ export const recadosRouter = (router: Router) => {
     recadosController.buscarRecados
   )
 
+  router.get('/user/:userID/arquivados',
+    userValidator,
+    recadosController.buscarRecados
+  )
+
   router.post('/user/:userID/novorecado',
     userValidator,
     newRecadoValidator,
