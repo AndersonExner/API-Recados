@@ -11,12 +11,19 @@ export class RecadosController {
 
       const listaUsers = buscarUsuariosDB()
 
-      const user = listaUsers.find((user) => user.id === userID) as User
+      const indexUser = listaUsers.findIndex((user) => user.id === userID)
+
+      const recados = listaUsers[indexUser].recados.filter((e) => {
+        if (!e.check) {
+          return e
+        }
+        return false
+      })
 
       const resposta: ResponseAPI = {
         success: true,
         message: 'Recados buscados',
-        data: user.recados.map((e) => e.handleProperties())
+        data: recados.map((e) => e.handleProperties())
       }
 
       return response.status(200).json(resposta)
@@ -53,6 +60,45 @@ export class RecadosController {
       const resposta: ResponseAPI = {
         success: true,
         message: 'Buscado com sucesso',
+        data: recados.map((e) => e.handleProperties())
+      }
+
+      return response.status(200).json(resposta)
+    } catch (error: any) {
+      const resposta: ResponseAPI = {
+        success: false,
+        message: error.message,
+        data: null
+      }
+
+      return response.status(400).json(resposta)
+    }
+  }
+
+  buscarRecadosArquivados (request: Request, response: Response) {
+    try {
+      const { userID, key } = request.params
+
+      let filtro = false
+
+      if (key === 'true') {
+        filtro = true
+      }
+
+      const listaUsers = buscarUsuariosDB()
+
+      const indexUser = listaUsers.findIndex((user) => user.id === userID)
+
+      const recados = listaUsers[indexUser].recados.filter((e) => {
+        if (e.check === filtro) {
+          return e
+        }
+        return false
+      })
+
+      const resposta: ResponseAPI = {
+        success: true,
+        message: 'Recados Arquivados Buscados Com Sucesso',
         data: recados.map((e) => e.handleProperties())
       }
 
