@@ -13,7 +13,7 @@ export const recadosRouter = (router: Router) => {
 
   router.get('/user/:userID/arquivados',
     userValidator,
-    recadosController.buscarRecados
+    recadosController.buscarRecadosArquivados
   )
 
   router.post('/user/:userID/novorecado',
