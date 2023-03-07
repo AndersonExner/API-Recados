@@ -62,6 +62,8 @@ export class Recado {
     if (params.description) this._description = params.description
 
     if (params.check) this._check = params.check
+
+    if (!params.check) this._check = params.check
   }
 
   static criarRecadoBD (params: RecadoDataBaseDTO): Recado {
