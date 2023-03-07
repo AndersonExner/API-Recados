@@ -16,7 +16,7 @@ export class RecadosController {
         if (!e.check) {
           return e
         }
-        return false
+        return true
       })
 
       const resposta: ResponseAPI = {
