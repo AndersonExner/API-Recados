@@ -3,7 +3,6 @@ import { userValidator } from '../users/middlewares'
 import { RecadosController } from './controllers/recados.controller'
 import { newRecadoValidator, recadoIDValidator } from './middlewares'
 
-
 export const recadosRouter = (router: Router) => {
   const recadosController = new RecadosController()
 
@@ -16,6 +15,11 @@ export const recadosRouter = (router: Router) => {
     userValidator,
     newRecadoValidator,
     recadosController.cadastrarRecado
+  )
+
+  router.post('/user/:userID/buscaporchave/:key',
+    userValidator,
+    recadosController.buscarRecadoporChave
   )
 
   router.put('/user/:userID/:recadoID',
